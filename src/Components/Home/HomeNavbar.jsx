@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useCart } from "../CartContext";
 import { Link } from "react-router-dom";
 import somImg from "../img/logo2.png";
 
 const HomeNavbar = ({ setShowCart }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { cart } = useCart();
+  const totalProductCount = cart.reduce(
+    (total, product) => total + product.quantity,
+    0
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -110,6 +116,23 @@ const HomeNavbar = ({ setShowCart }) => {
             <Link to="/contactus" class="nav-item nav-link">
               Contact Us
             </Link>
+            <div class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                English
+              </a>
+              <div class="dropdown-menu m-0">
+                <Link to="/blog" class="dropdown-item">
+                  English
+                </Link>
+                <Link to="/feature" class="dropdown-item">
+                  Khmer
+                </Link>
+              </div>
+            </div>
           </div>
           <div class="d-none d-lg-flex ms-2">
             <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
@@ -121,9 +144,14 @@ const HomeNavbar = ({ setShowCart }) => {
 
             <div
               class="btn-sm-square bg-white rounded-circle ms-3"
+              style={{ cursor: "pointer" }}
               onClick={() => setShowCart(true)}
             >
-              <small class="fa fa-shopping-bag text-body"></small>
+              <small class="fa fa-shopping-bag text-body">
+                <span style={{ color: "red", marginLeft: "3px" }}>
+                  {totalProductCount}
+                </span>
+              </small>
             </div>
           </div>
         </div>
