@@ -147,7 +147,7 @@ const HomeNavbar = ({ setShowCart }) => {
               style={{ cursor: "pointer" }}
               onClick={() => setShowCart(true)}
             >
-              <small class="fa fa-shopping-bag text-body">
+              <small class="fa fa-shopping-bag ">
                 <span style={{ color: "red", marginLeft: "3px" }}>
                   {totalProductCount}
                 </span>

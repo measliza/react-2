@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useCart } from "../CartContext";
 
 const ProductProduct = () => {
   const [products, setProducts] = useState([]);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch("https://fakestoreapi.com/products");
         const data = await response.json();
-        setProducts(data.slice(0, 8));
+        setProducts(data.slice());
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -16,6 +18,9 @@ const ProductProduct = () => {
 
     fetchProducts();
   }, []);
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
 
   return (
     <div>
@@ -89,7 +94,10 @@ const ProductProduct = () => {
                           </a>
                         </small>
                         <small class="w-50 text-center py-2">
-                          <a class="text-body" href="">
+                          <a
+                            class="text-body"
+                            onClick={() => handleAddToCart(product)}
+                          >
                             <i class="fa fa-shopping-bag text-primary me-2"></i>
                             Add to cart
                           </a>
