@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import somImg from "../img/logo2.png";
 
-const HomeNavbar = ({ setShowCart }) => {
+const HomeNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -115,16 +115,12 @@ const HomeNavbar = ({ setShowCart }) => {
             <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
               <small class="fa fa-search text-body"></small>
             </a>
-            <div class="btn-sm-square bg-white rounded-circle ms-3">
+            <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
               <small class="fa fa-user text-body"></small>
-            </div>
-
-            <div
-              class="btn-sm-square bg-white rounded-circle ms-3"
-              onClick={() => setShowCart(true)}
-            >
+            </a>
+            <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
               <small class="fa fa-shopping-bag text-body"></small>
-            </div>
+            </a>
           </div>
         </div>
       </nav>
