@@ -1,14 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../CartContext";
+import PayPal from "../Paypal";
 
 const HomeCart = ({ setShowCart }) => {
   const [hoveredItem, setHoveredItem] = useState(null);
-  const { cart, removeFromCart } = useCart(); // Get cart and removeFromCart from context
+  const [paymentMethod, setPaymentMethod] = useState("paypal");
+  const { cart, removeFromCart } = useCart();
 
   const handleRemoveItem = (itemID) => {
-    removeFromCart(itemID); // Remove the item from the cart using the context function
+    removeFromCart(itemID);
   };
+
+  useEffect(() => {
+    // console.log('Rendering PayPal Button');
+    return () => {
+      console.log("Unmounting PayPal Button");
+    };
+  }, []);
+
+  const finalTotal = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   return (
     <>
@@ -173,21 +187,14 @@ const HomeCart = ({ setShowCart }) => {
               padding: "16px",
             }}
           >
-            <Link
-              // to="/checkout"
+            <div
               style={{
-                display: "inline-block",
+                display: paymentMethod === "paypal" ? "block" : "none",
                 width: "100%",
-                textAlign: "center",
-                padding: "10px",
-                backgroundColor: "#333",
-                color: "#fff",
-                textDecoration: "none",
-                borderRadius: "50px",
               }}
             >
-              Check Out
-            </Link>
+              <PayPal total={finalTotal} />
+            </div>
           </div>
         )}
       </div>
