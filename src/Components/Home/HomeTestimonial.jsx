@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import testimonial1 from "../img/testimonial-1.jpg";
 import testimonial2 from "../img/testimonial-2.jpg";
 import testimonial3 from "../img/testimonial-3.jpg";
 import testimonial4 from "../img/testimonial-4.jpg";
 
 const HomeTestimonial = () => {
+  const location = useLocation();
+  const isKhmer = location.pathname.startsWith("/kh");
+  const currentLanguage = location.pathname.split("/")[1] || "en";
   return (
     <div>
       <div class="container-fluid bg-light bg-icon py-6 mb-5">
@@ -14,10 +18,14 @@ const HomeTestimonial = () => {
             data-wow-delay="0.1s"
             style={{ maxWidth: "500px" }}
           >
-            <h1 class="display-5 mb-3">Customer Review</h1>
+            <h1 class="display-5 mb-3">
+              {" "}
+              {isKhmer ? "មតិអតិថិជនរបស់យើង" : "Customer Review"}
+            </h1>
             <p>
-              Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam
-              justo sed rebum vero dolor duo.
+              {isKhmer
+                ? "ជឿជាក់ដោយអតិថិជនរបស់យើង និង​ស្រលាញ់គុណភាពរបស់យើង។"
+                : "Trusted by our customers, loved for our quality."}
             </p>
           </div>
           {/* <div
@@ -26,10 +34,7 @@ const HomeTestimonial = () => {
           > */}
           <div class="testimonial-item position-relative bg-white p-5 mt-4">
             <i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
-            <p class="mb-4">
-              Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam
-              amet diam et eos. Clita erat ipsum et lorem et sit.
-            </p>
+            <p class="mb-4">{isKhmer ? "សេវាកម្ម" : "Service"}</p>
             <div class="d-flex align-items-center">
               <img
                 src={testimonial1}
@@ -37,17 +42,17 @@ const HomeTestimonial = () => {
                 class="flex-shrink-0 rounded-circle"
               />
               <div class="ms-3">
-                <h5 class="mb-1">Client Name</h5>
+                <h5 class="mb-1">
+                  {" "}
+                  {isKhmer ? "ឈ្មេាះអតិថិជន" : "Client Name"}
+                </h5>
                 <span>Profession</span>
               </div>
             </div>
           </div>
           <div class="testimonial-item position-relative bg-white p-5 mt-4">
             <i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
-            <p class="mb-4">
-              Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam
-              amet diam et eos. Clita erat ipsum et lorem et sit.
-            </p>
+            <p class="mb-4">{isKhmer ? "សេវាកម្ម" : "Service"}</p>
             <div class="d-flex align-items-center">
               <img
                 src={testimonial2}
@@ -55,17 +60,17 @@ const HomeTestimonial = () => {
                 class="flex-shrink-0 rounded-circle"
               />
               <div class="ms-3">
-                <h5 class="mb-1">Client Name</h5>
+                <h5 class="mb-1">
+                  {" "}
+                  {isKhmer ? "ឈ្មេាះអតិថិជន" : "Client Name"}
+                </h5>
                 <span>Profession</span>
               </div>
             </div>
           </div>
           <div class="testimonial-item position-relative bg-white p-5 mt-4">
             <i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
-            <p class="mb-4">
-              Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam
-              amet diam et eos. Clita erat ipsum et lorem et sit.
-            </p>
+            <p class="mb-4">{isKhmer ? "សេវាកម្ម" : "Service"}</p>
             <div class="d-flex align-items-center">
               <img
                 src={testimonial3}
@@ -73,17 +78,17 @@ const HomeTestimonial = () => {
                 class="flex-shrink-0 rounded-circle"
               />
               <div class="ms-3">
-                <h5 class="mb-1">Client Name</h5>
+                <h5 class="mb-1">
+                  {" "}
+                  {isKhmer ? "ឈ្មេាះអតិថិជន" : "Client Name"}
+                </h5>
                 <span>Profession</span>
               </div>
             </div>
           </div>
           <div class="testimonial-item position-relative bg-white p-5 mt-4">
             <i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
-            <p class="mb-4">
-              Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam
-              amet diam et eos. Clita erat ipsum et lorem et sit.
-            </p>
+            <p class="mb-4">{isKhmer ? "សេវាកម្ម" : "Service"}</p>
             <div class="d-flex align-items-center">
               <img
                 src={testimonial4}
@@ -91,7 +96,10 @@ const HomeTestimonial = () => {
                 class="flex-shrink-0 rounded-circle"
               />
               <div class="ms-3">
-                <h5 class="mb-1">Client Name</h5>
+                <h5 class="mb-1">
+                  {" "}
+                  {isKhmer ? "ឈ្មេាះអតិថិជន" : "Client Name"}
+                </h5>
                 <span>Profession</span>
               </div>
             </div>

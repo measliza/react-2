@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../CartContext";
 
 const ProductProduct = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isKhmer = location.pathname.startsWith("/kh");
   const [products, setProducts] = useState([]);
   const { addToCart } = useCart();
 
@@ -33,7 +37,9 @@ const ProductProduct = () => {
                 data-wow-delay="0.1s"
                 style={{ maxWidth: "500px" }}
               >
-                <h1 class="display-5 mb-3">Our Products</h1>
+                <h1 class="display-5 mb-3">
+                  {isKhmer ? "ផលិតផល" : "Our Product"}
+                </h1>
                 <p>
                   Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum
                   diam justo sed rebum vero dolor duo.
@@ -68,7 +74,7 @@ const ProductProduct = () => {
                           }}
                         />
                         <div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                          New
+                          {isKhmer ? "ថ្មី" : "New"}
                         </div>
                       </div>
                       <div
@@ -89,8 +95,8 @@ const ProductProduct = () => {
                       <div class="d-flex border-top">
                         <small class="w-50 text-center border-end py-2">
                           <a class="text-body" href="">
-                            <i class="fa fa-eye text-primary me-2"></i>View
-                            detail
+                            <i class="fa fa-eye text-primary me-2"></i>
+                            {isKhmer ? "មើលព័ត៌មានលម្អិត" : "View Detail"}
                           </a>
                         </small>
                         <small class="w-50 text-center py-2">
@@ -99,7 +105,7 @@ const ProductProduct = () => {
                             onClick={() => handleAddToCart(product)}
                           >
                             <i class="fa fa-shopping-bag text-primary me-2"></i>
-                            Add to cart
+                            {isKhmer ? "បញ្ចូលទៅក្នុងរទេះ" : " Add to cart"}
                           </a>
                         </small>
                       </div>

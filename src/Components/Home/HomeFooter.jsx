@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import somImg from "../img/logo2.png";
 
 const HomeFooter = () => {
+  const location = useLocation();
+  const isKhmer = location.pathname.startsWith("/kh");
+  const currentLanguage = location.pathname.split("/")[1] || "en";
   return (
     <div>
       <div
@@ -14,10 +18,10 @@ const HomeFooter = () => {
               <h1 class="fw-bold text-primary mb-4">
                 <img src={somImg} alt="" style={{ width: "120px" }} />
               </h1>
-              <p>
+              {/* <p>
                 Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita
                 erat ipsum et lorem et sit, sed stet lorem sit clita
-              </p>
+              </p> */}
               <div class="d-flex pt-2">
                 <a
                   class="btn btn-square btn-outline-light rounded-circle me-1"
@@ -46,7 +50,9 @@ const HomeFooter = () => {
               </div>
             </div>
             <div class="col-lg-3 col-md-6">
-              <h4 class="text-light mb-4">Address</h4>
+              <h4 class="text-light mb-4">
+                {isKhmer ? "អាសយដ្ឋាន" : "Address"}
+              </h4>
               <p>
                 <i class="fa fa-map-marker-alt me-3"></i>123 Street, New York,
                 USA
@@ -59,25 +65,30 @@ const HomeFooter = () => {
               </p>
             </div>
             <div class="col-lg-3 col-md-6">
-              <h4 class="text-light mb-4">Quick Links</h4>
+              <h4 class="text-light mb-4">
+                {isKhmer ? "តំណភ្ជាប់រហ័ស" : "Quick Links"}
+              </h4>
               <a class="btn btn-link" href="">
-                About Us
+                {isKhmer ? "អំពី" : "About Us"}
               </a>
               <a class="btn btn-link" href="">
-                Contact Us
+                {isKhmer ? "ទំនាក់ទំនង" : "Contact Us"}
               </a>
               <a class="btn btn-link" href="">
-                Our Services
+                {isKhmer ? "សេវាកម្ម" : "Our Service"}
               </a>
               <a class="btn btn-link" href="">
-                Terms & Condition
+                {isKhmer ? "លក្ខខណ្ឌ" : "Terms & Condition"}
               </a>
               <a class="btn btn-link" href="">
-                Support
+                {isKhmer ? "ការគាំទ្រ" : "Support"}
               </a>
             </div>
             <div class="col-lg-3 col-md-6">
-              <h4 class="text-light mb-4">Newsletter</h4>
+              <h4 class="text-light mb-4">
+                {" "}
+                {isKhmer ? "ព្រឹត្តិបត្រ" : "Newsletter"}
+              </h4>
               <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
               <div
                 class="position-relative mx-auto"
@@ -102,12 +113,19 @@ const HomeFooter = () => {
           <div class="container">
             <div class="row">
               <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+                &copy;{" "}
+                <a href="#">
+                  {isKhmer ? "ឈ្មោះគេហទំព័ររបស់អ្នក។" : "Your Site Name"}
+                </a>
+                {isKhmer
+                  ? ", រក្សាសិទ្ធិគ្រប់យ៉ាង។"
+                  : "    , All Right Reserved."}
               </div>
               <div class="col-md-6 text-center text-md-end">
-                Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                {isKhmer ? "រចនាដោយ" : " Designed by"}{" "}
+                <a href="https://htmlcodex.com">HTML Codex</a>
                 <br />
-                Distributed By:{" "}
+                {isKhmer ? "ចែកចាយដោយ៖" : "  Distributed By:"}{" "}
                 <a href="https://themewagon.com" target="_blank">
                   ThemeWagon
                 </a>

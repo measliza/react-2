@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useCart } from "../CartContext";
 import somImg from "../img/logo2.png";
 
-const HomeNavbar = () => {
+const HomeNavbar = ({ setShowCart }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isKhmer = location.pathname.startsWith("/kh");
+  const currentLanguage = location.pathname.split("/")[1] || "en";
+  const currentPath = location.pathname;
   const [isScrolled, setIsScrolled] = useState(false);
+  const { cart } = useCart();
+  const totalProductCount = cart.reduce(
+    (total, product) => total + product.quantity,
+    0
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +27,11 @@ const HomeNavbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleLanguageSwitch = (language) => {
+    const pathWithoutLanguage = location.pathname.split("/").slice(2).join("/");
+    navigate(`/${language}/${pathWithoutLanguage}`);
+  };
 
   return (
     <div
@@ -62,7 +78,7 @@ const HomeNavbar = () => {
         class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn"
         data-wow-delay="0.1s"
       >
-        <Link to="/home" class="navbar-brand ms-4 ms-lg-0">
+        <Link to={`/${currentLanguage}/home`} class="navbar-brand ms-4 ms-lg-0">
           <img src={somImg} alt="" style={{ width: "120px" }} />
         </Link>
         <button
@@ -75,14 +91,22 @@ const HomeNavbar = () => {
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <Link to="/home" class="nav-item nav-link active">
-              Home
+            <Link
+              // className={currentPath.includes('/home') ? 'active' : ''}
+              to={`/${currentLanguage}/home`}
+              class="nav-item nav-link active"
+            >
+              {isKhmer ? "ទំព័រដើម" : "Home"}
             </Link>
-            <Link to="/about" class="nav-item nav-link">
-              About Us
+            <Link
+              // className={currentPath.includes('/about') ? 'active' : ''}
+              to={`/${currentLanguage}/about`}
+              class="nav-item nav-link"
+            >
+              {isKhmer ? "អំពី" : "About Us"}
             </Link>
             <Link to="/product" class="nav-item nav-link">
-              Products
+              {isKhmer ? "ផលិតផល" : "Product"}
             </Link>
             <div class="nav-item dropdown">
               <a
@@ -90,37 +114,69 @@ const HomeNavbar = () => {
                 class="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown"
               >
-                Pages
+                {isKhmer ? "ព័ត៌មាន" : "Pages"}
               </a>
               <div class="dropdown-menu m-0">
                 <Link to="/blog" class="dropdown-item">
-                  Blog Grid
+                  {isKhmer ? "ព័ត៌មានបន្ថែំ" : "Blog Grid"}
                 </Link>
                 <Link to="/feature" class="dropdown-item">
-                  Our Features
+                  {isKhmer ? "លក្ខណៈពិសេស" : "Our Featur"}
                 </Link>
                 <Link to="/testimonial" class="dropdown-item">
-                  Testimonial
+                  {isKhmer ? "សំបុត្រ" : "Testimonial"}
                 </Link>
                 <Link to="/FZFPages" class="dropdown-item">
-                  404 Page
+                  {isKhmer ? "ទំព័រទី​ ៤០៤" : "404Pages"}
                 </Link>
               </div>
             </div>
             <Link to="/contactus" class="nav-item nav-link">
-              Contact Us
+              {isKhmer ? "ការទាក់ទង" : "Contact Us"}
             </Link>
+            <div class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                {currentLanguage === "en" ? "English" : "Khmer"}
+              </a>
+              <div class="dropdown-menu m-0">
+                <div
+                  onClick={() => handleLanguageSwitch("en")}
+                  class="dropdown-item"
+                >
+                  English
+                </div>
+                <div
+                  onClick={() => handleLanguageSwitch("kh")}
+                  class="dropdown-item"
+                >
+                  Khmer
+                </div>
+              </div>
+            </div>
           </div>
           <div class="d-none d-lg-flex ms-2">
             <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
               <small class="fa fa-search text-body"></small>
             </a>
-            <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+            <div class="btn-sm-square bg-white rounded-circle ms-3">
               <small class="fa fa-user text-body"></small>
-            </a>
-            <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
-              <small class="fa fa-shopping-bag text-body"></small>
-            </a>
+            </div>
+
+            <div
+              class="btn-sm-square bg-white rounded-circle ms-3"
+              style={{ cursor: "pointer" }}
+              onClick={() => setShowCart(true)}
+            >
+              <small class="fa fa-shopping-bag ">
+                <span style={{ color: "red", marginLeft: "3px" }}>
+                  {totalProductCount}
+                </span>
+              </small>
+            </div>
           </div>
         </div>
       </nav>

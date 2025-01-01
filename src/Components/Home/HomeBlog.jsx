@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import pdone from "../img/pd-1.avif";
 import pdtwo from "../img/pd-2.webp";
 import pdthree from "../img/pd-3.jpg";
 
 const HomeBlog = () => {
+  const location = useLocation();
+  const isKhmer = location.pathname.startsWith("/kh");
+  const currentLanguage = location.pathname.split("/")[1] || "en";
   return (
     <div>
       <div class="container-xxl py-5">
@@ -13,10 +17,15 @@ const HomeBlog = () => {
             data-wow-delay="0.1s"
             style={{ maxWidth: "500px" }}
           >
-            <h1 class="display-5 mb-3">Latest Blog</h1>
+            <h1 class="display-5 mb-3">
+              {isKhmer
+                ? "ផ្នែក​មួយ​នៃ​គេហទំព័រ"
+                : "Tracking views, likes, and comments to improve future content"}
+            </h1>
             <p>
-              Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam
-              justo sed rebum vero dolor duo.
+              {isKhmer
+                ? "តាមដានការមើល ការចូលចិត្ត និងមតិយោបល់ ដើម្បីកែលម្អខ្លឹមសារនាពេលអនាគត"
+                : "Latest Blog"}
             </p>
           </div>
           <div class="row g-4">

@@ -1,7 +1,10 @@
-/* eslint-disable jsx-a11y/alt-text */
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const HomeAbout = () => {
+  const location = useLocation();
+  const isKhmer = location.pathname.startsWith("/kh");
+  const currentLanguage = location.pathname.split("/")[1] || "en";
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -58,7 +61,7 @@ const HomeAbout = () => {
                 magna dolore erat amet
               </p>
               <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="">
-                Read More
+                {isKhmer ? "អានបន្ថែម" : "Read More"}
               </a>
             </div>
           </div>

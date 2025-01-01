@@ -20,15 +20,25 @@ function App() {
     <CartProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Navigate to="/home" />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/" element={<Navigate to="/en/home" />} />
+          {/* English  */}
+          <Route path="/en/home" element={<Home />} />
+          <Route path="/en/about" element={<About />} />
           <Route path="/product" element={<Product />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/FZFPages" element={<FZFPages />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/feature" element={<Feature />} />
           <Route path="/testimonial" element={<Testimonial />} />
+          {/* Khmer */}
+          <Route path="/kh/home" element={<Home />} />
+          <Route path="/kh/about" element={<About />} />
+          {/* <Route path="/product" element={<Product />} />
+          <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/FZFPages" element={<FZFPages />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/feature" element={<Feature />} />
+          <Route path="/testimonial" element={<Testimonial />} /> */}
         </Routes>
       </Router>
     </CartProvider>

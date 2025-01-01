@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Ioc from "../img/imagebg.jpg";
 const HomeCarousal = () => {
+  const location = useLocation();
+  const isKhmer = location.pathname.startsWith("/kh");
+  const currentLanguage = location.pathname.split("/")[1] || "en";
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -43,13 +47,13 @@ const HomeCarousal = () => {
                         href=""
                         class="btn btn-primary rounded-pill py-sm-3 px-sm-5"
                       >
-                        Products
+                        {isKhmer ? "ផលិតផល" : "Product"}
                       </a>
                       <a
                         href=""
                         class="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3"
                       >
-                        Services
+                        {isKhmer ? "សេវាកម្ម" : "Service"}
                       </a>
                     </div>
                   </div>
@@ -62,7 +66,7 @@ const HomeCarousal = () => {
                 <div class="container">
                   <div class="row justify-content-start">
                     <div class="col-lg-7">
-                      <h1 class="display-2 mb-5 animated slideInDown">
+                      {/* <h1 class="display-2 mb-5 animated slideInDown">
                         Natural Food Is Always Healthy
                       </h1>
                       <a
@@ -76,7 +80,7 @@ const HomeCarousal = () => {
                         class="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3"
                       >
                         Services
-                      </a>
+                      </a> */}
                     </div>
                   </div>
                 </div>
